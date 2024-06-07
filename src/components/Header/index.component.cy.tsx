@@ -8,7 +8,5 @@ describe("Header", () => {
     cy.get('[data-cy="title-header"]')
       .should("be.visible")
       .contains("Cypress Test");
-
-    cy.get('[data-cy="theme-button"]').should("be.visible").and("be.enabled");
   });
 });

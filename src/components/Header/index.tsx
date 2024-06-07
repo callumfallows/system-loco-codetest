@@ -1,6 +1,14 @@
-import { Flex, Text } from "@chakra-ui/react";
+/**
+ * Renders a header component with a title, page icon, and descriptive text.
+ *
+ * @param {HeaderProps} props - The props for the header component.
+ * @param {string} props.title - The title to display in the header.
+ * @returns {JSX.Element} The rendered header component.
+ */
+import { Text } from "@chakra-ui/react";
 
-import ThemeButton from "../ThemeButton";
+import { devicesPage } from "~/constants/branding/pages";
+import { PageHeader } from "./pageHeader";
 
 interface HeaderProps {
   title: string;
@@ -8,10 +16,10 @@ interface HeaderProps {
 
 export default function Header({ title }: HeaderProps) {
   return (
-    <Flex justifyContent="space-between">
-      <Flex />
-      <Text data-cy="title-header">{title}</Text>
-      <ThemeButton aria-label="Toggle light-dark mode" />
-    </Flex>
+    <PageHeader
+      header={<Text>{title || devicesPage.name}</Text>}
+      pageIcon={devicesPage.icon}
+      pageDescription={devicesPage.descriptiveText}
+    />
   );
 }

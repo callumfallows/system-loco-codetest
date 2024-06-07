@@ -1,12 +1,20 @@
+/**
+ * The main application component that wraps the entire Next.js application.
+ * It sets up the global context, renders the header, and renders the main page component.
+ *
+ * @param {AppProps} props - The props passed to the application component.
+ * @param {React.ReactNode} props.Component - The main page component to be rendered.
+ * @param {any} props.pageProps - The props to be passed to the main page component.
+ * @returns {JSX.Element} - The rendered application component.
+ */
 import { Flex } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 
 import GlobalContext from "~/shared/contexts/globalContext";
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const SystemLocoApplication = ({ Component, pageProps }: AppProps) => {
   return (
     <GlobalContext>
       <Head>
@@ -20,20 +28,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
         <meta name="rating" content="general" key="rating" />
         <meta name="robots" content="index, follow" key="robots" />
-        <meta
-          name="author"
-          content="AstrOOnauta (https://github.com/AstrOOnauta)"
-          key="author"
-        />
-        <meta property="og:title" content="Next JS Boilerplate" key="title" />
+        <meta name="author" content="Callum Fallows" key="author" />
+        <meta property="og:title" content="System Loco" key="title" />
         <meta
           name="description"
-          content="Boilerplate Next JS + Typescript + Chakra UI + Prettier + ESLint + Pre-commit (Husky + Lint-staged) + Cypress (e2e + component)"
+          content="System Loco Code Test"
           key="description"
         />
         <meta
           property="og:url"
-          content="https://github.com/AstrOOnauta/next-js-boilerplate"
+          content="https://github.com/callumfallows/system-loco-codetest"
           key="url"
         />
         <meta property="og:type" content="website" />
@@ -47,7 +51,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta property="og:image:height" content="630" key="image:height" />
         <meta
           property="og:image:alt"
-          content="Boilerplate Next JS + Typescript + Chakra UI + Prettier + ESLint + Pre-commit (Husky + Lint-staged) + Cypress (e2e + component)"
+          content="System Loco Code Test"
           key="image:alt"
         />
         <meta name="twitter:card" content="summary_large_image" />
@@ -101,10 +105,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Flex flexDir="column" minH="100vh" w="100%" p={6}>
         <Header title="" />
         <Component {...pageProps} />
-        <Footer />
       </Flex>
     </GlobalContext>
   );
 };
 
-export default MyApp;
+export default SystemLocoApplication;

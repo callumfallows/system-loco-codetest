@@ -1,15 +1,32 @@
 import type { NextPage } from "next";
-import { Flex, Text } from "@chakra-ui/react";
+import { Container, HStack, VStack } from "@chakra-ui/react";
+import PageContentContainer from "~/components/Layout";
+import { DeviceListTable } from "~/components/Tables";
 
 const Home: NextPage = () => {
   return (
-    <Flex flexDir="column" flex={1}>
-      <Flex flex={1} alignItems="center" justifyContent="center">
-        <Text data-cy="title" fontSize="2xl" fontWeight="bold">
-          Boilerplate Next JS
-        </Text>
-      </Flex>
-    </Flex>
+    <PageContentContainer>
+      <Container
+        width="100vw"
+        height="100vw"
+        maxWidth="100vw"
+        overflow="hidden"
+        as="main"
+      >
+        <HStack width="full">
+          <HStack width="auto">Logo</HStack>
+        </HStack>
+        <VStack
+          height="full"
+          width="full"
+          overflow="hidden"
+          overflowY="auto"
+          alignItems="flex-start"
+        >
+          <DeviceListTable />
+        </VStack>
+      </Container>
+    </PageContentContainer>
   );
 };
 
