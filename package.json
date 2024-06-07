@@ -1,0 +1,67 @@
+{
+  "name": "codetest-system-loco",
+  "author": "Callum Fallows",
+  "description": "Boilerplate Next JS + Typescript + Chakra UI + Prettier + ESLint + Pre-commit (Husky + Lint-staged) + Cypress (e2e + component)",
+  "version": "1.0.0",
+  "license": "ISC",
+  "bin": {
+    "create-next-js-boilerplate": "./bin/cli.js"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prettier": "prettier src --check .",
+    "lint": "next lint",
+    "lint-staged": "lint-staged",
+    "husky-install": "husky install",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit && eslint --fix . && prettier --write .",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run && cypress run --component"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "2.8.2",
+    "@emotion/react": "11.11.3",
+    "@emotion/styled": "11.11.0",
+    "framer-motion": "10.18.0",
+    "next": "^14.2.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "axios": "^1.7.2",
+    "swr": "^2.2.5",
+    "react-icons": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.10.5",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "@typescript-eslint/eslint-plugin": "6.19.0",
+    "cypress": "13.6.4",
+    "eslint": "8.56.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-next": "14.1.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-jsx-a11y": "6.8.0",
+    "eslint-plugin-prettier": "5.1.3",
+    "eslint-plugin-react": "7.33.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-security": "2.1.0",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "eslint-plugin-sonarjs": "0.23.0",
+    "husky": "8.0.3",
+    "lint-staged": "15.2.0",
+    "prettier": "3.1.1",
+    "typescript": "5.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,md,html}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
