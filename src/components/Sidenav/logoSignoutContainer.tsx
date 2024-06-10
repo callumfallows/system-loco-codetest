@@ -17,6 +17,7 @@ import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 import { branding } from "~/constants/branding/branding";
 import { devicesPage } from "~/constants/branding/pages";
+import { customBackgroundColors } from "~/styles/theme";
 
 const LogoWithSignoutContainer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,7 +27,8 @@ const LogoWithSignoutContainer = () => {
     <VStack
       maxWidth="360px"
       padding="4"
-      backgroundColor="gray.50"
+      spacing="4"
+      backgroundColor={customBackgroundColors.surface2}
       borderRadius="sm"
     >
       <Flex width="full" align="flex-start">
@@ -37,17 +39,17 @@ const LogoWithSignoutContainer = () => {
           height="40px"
         />
       </Flex>
-      <Flex
-        direction="column"
-        as="nav"
-        width="250px"
-        padding="4"
-        background="gray.50"
-      >
+      <Flex direction="column" as="nav" width="full" padding="0">
         <HStack width="full" paddingY="2" paddingX="2">
-          <HStack width="full">
+          <HStack width="full" alignItems="center" justifyContent="baseline">
+            <Img
+              src="/icons/icon-get-help.svg"
+              alt="Get Help"
+              width="20px"
+              height="20px"
+            />
             <Link href="/">
-              <Text>Get Help</Text>
+              <Text fontSize="sm">Get Help</Text>
             </Link>
           </HStack>
         </HStack>
@@ -78,10 +80,10 @@ const LogoWithSignoutContainer = () => {
                 width="18px"
                 height="14px"
               />
-              <Box fontWeight="bold">My App</Box>
+              <Box fontWeight="bold">System Loco</Box>
             </Flex>
             <Flex direction="column" as="nav">
-              <Link href="/about">About</Link>
+              <Link href="/about">Get Help</Link>
               <Link href="/contact">Contact</Link>
             </Flex>
           </DrawerContent>

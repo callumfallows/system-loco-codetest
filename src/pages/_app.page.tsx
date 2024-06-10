@@ -11,6 +11,7 @@ import { Flex } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Header from "~/components/Header";
+import { branding } from "~/constants/branding/branding";
 
 import GlobalContext from "~/shared/contexts/globalContext";
 
@@ -18,7 +19,7 @@ const SystemLocoApplication = ({ Component, pageProps }: AppProps) => {
   return (
     <GlobalContext>
       <Head>
-        <title>Boilerplate Next JS</title>
+        <title>{branding.name}</title>
         <meta charSet="UTF-8" key="charset" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" key="http-equiv" />
         <meta
@@ -102,7 +103,7 @@ const SystemLocoApplication = ({ Component, pageProps }: AppProps) => {
           key="icon192"
         />
       </Head>
-      <Flex flexDir="column" minH="100vh" w="100%" p={6}>
+      <Flex flexDir="column" minH="100vh" p="4" paddingTop="0">
         <Header title="" />
         <Component {...pageProps} />
       </Flex>

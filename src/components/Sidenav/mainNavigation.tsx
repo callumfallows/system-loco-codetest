@@ -4,18 +4,16 @@ import {
   useMediaQuery,
   Flex,
   VStack,
-  HStack,
-  Img,
   IconButton,
   Icon,
   Drawer,
-  Text,
   DrawerOverlay,
   DrawerContent,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
-import { devicesPage } from "~/constants/branding/pages";
+import { customBackgroundColors } from "~/styles/theme";
+import NavItemDesktopDesktop from "./navItemDesktop";
 
 const MainNavigation = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,60 +24,43 @@ const MainNavigation = () => {
       <Flex
         direction="column"
         as="nav"
-        width="250px"
+        width="full"
+        minWidth="200px"
+        maxWidth="360px"
         padding="2"
-        background="linear-gradient(0deg, #F8FAFA, #F8FAFA), linear-gradient(0deg, rgba(107, 95, 0, 0.05), rgba(107, 95, 0, 0.05));"
+        background={customBackgroundColors.surface2}
       >
-        <VStack>
-          <HStack
-            borderRadius="sm"
-            padding="2"
-            width="full"
-            pointerEvents="none"
-            background="yellow.100"
-          >
-            <Img
-              src="/icons/icon-device-list.svg"
-              alt="Device List"
-              width="14px"
-              height="10px"
-            />
-            <Link href={devicesPage.path}>
-              <Text>Device List</Text>
-            </Link>
-          </HStack>
-          <HStack
-            borderRadius="sm"
-            padding="2"
-            width="full"
-            pointerEvents="none"
-          >
-            <Img
-              src="/icons/icon-device-map.svg"
-              alt="Device Map"
-              width="14px"
-              height="10px"
-            />
-            <Link href={devicesPage.path}>
-              <Text>Device Map</Text>
-            </Link>
-          </HStack>
-          <HStack
-            borderRadius="sm"
-            padding="2"
-            width="full"
-            pointerEvents="none"
-          >
-            <Img
-              src="/icons/icon-device-profiles.svg"
-              alt="Device Profiles"
-              width="14px"
-              height="10px"
-            />
-            <Link href={devicesPage.path}>
-              <Text>Device Profiles</Text>
-            </Link>
-          </HStack>
+        <VStack width="full">
+          <NavItemDesktopDesktop
+            iconSrc="/icons/icon-device-list.svg"
+            iconAlt="Device List"
+            iconWidth="14px"
+            iconHeight="10px"
+            label="Device List"
+            href="/"
+            disabled
+            active
+          />
+          <NavItemDesktopDesktop
+            iconSrc="/icons/icon-device-map.svg"
+            iconAlt="Device Map"
+            iconWidth="14px"
+            iconHeight="10px"
+            label="Device Map"
+            href="/"
+            disabled
+            active={false}
+          />
+          <NavItemDesktopDesktop
+            iconSrc="/icons/icon-device-profiles.svg"
+            iconAlt="Device Profiles"
+            iconWidth="14px"
+            iconHeight="10px"
+            label="Device Profiles"
+            href="/"
+            disabled
+            active={false}
+          />
         </VStack>
       </Flex>
     </Box>

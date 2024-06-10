@@ -6,8 +6,6 @@
  */
 import {
   HStack,
-  IconButton,
-  Select,
   Stack,
   Table,
   TableContainer,
@@ -22,12 +20,12 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { PropsWithChildren, useCallback } from "react";
-import { BiRefresh } from "react-icons/bi";
+import { PropsWithChildren, useCallback, useEffect } from "react";
+import useDeviceFilters from "~/hooks/useDeviceFilters";
 import useDevices from "~/hooks/useDevices";
 import { Devices } from "~/types/Devices";
 import { calculateTimeFromNow } from "~/util/Dates";
-import TextSearch from "../Filters/TextSearch";
+import { getQueryStrings } from "~/util/Filters";
 
 const rowStyle = {
   backgroundColor: "#ffffff",
@@ -67,40 +65,20 @@ const DeviceListTable = () => {
     [push]
   );
 
-  const { devices, isLoading, isError } = useDevices();
+  const { isLoading, isError, filteredDeviceTable, filterValues } =
+    useDeviceFilters();
+  const { devices } = useDevices();
+
+  useEffect(() => {
+    getQueryStrings();
+  }, [filteredDeviceTable, filterValues]);
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading devices</div>;
-  if (!devices) return <div>No devices found</div>;
+  if (!filteredDeviceTable) return <div>No devices found</div>;
 
   return (
-    <VStack width="70%" justifyContent="flex-start">
-      <TextSearch />
-      <HStack justifyContent="flex-start" width="100%" textAlign="left">
-        <Select
-          width="xs"
-          borderRadius="sm"
-          isDisabled
-          fontSize="sm"
-          borderColor="black"
-        >
-          <option>Manage Filters</option>
-        </Select>
-        <Select
-          width="xs"
-          borderRadius="sm"
-          isDisabled
-          fontSize="sm"
-          borderColor="black"
-        >
-          <option>Label</option>
-        </Select>
-        <Select width="xs" borderRadius="sm" fontSize="sm" borderColor="black">
-          <option>Model</option>
-        </Select>
-        <IconButton aria-label="Refresh" fontSize="sm" borderColor="black">
-          <BiRefresh size="12px" color="black" />
-        </IconButton>
-      </HStack>
+    <VStack width="full" justifyContent="flex-start">
       <TableContainer width="full">
         <Table
           size="sm"
@@ -121,7 +99,7 @@ const DeviceListTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {devices?.map(
+            {filteredDeviceTable?.map(
               ({ id, name, lastReportTime, model }: Devices, index: number) => (
                 <Tr
                   key={id}
@@ -157,8 +135,8 @@ const DeviceListTable = () => {
                       </Tag>
                     </Stack>
                   </DeviceListTableValue>
-                  <DeviceListTableValue>{model.name}</DeviceListTableValue>
-                  <DeviceListTableValue>{model.product}</DeviceListTableValue>
+                  <DeviceListTableValue>{model?.name}</DeviceListTableValue>
+                  <DeviceListTableValue>{model?.product}</DeviceListTableValue>
                   <DeviceListTableValue>Default</DeviceListTableValue>
                 </Tr>
               )
@@ -168,8 +146,9 @@ const DeviceListTable = () => {
       </TableContainer>
       <HStack justifyContent="flex-start" width="100%" textAlign="left">
         <Text fontSize="xs" width="full" textAlign="left">
-          Showing 1 to {devices?.length < 50 ? devices.length : 50} of{" "}
-          {devices?.length} devices
+          Showing 1 to{" "}
+          {filteredDeviceTable?.length < 50 ? filteredDeviceTable?.length : 50}{" "}
+          of {devices?.length} devices
         </Text>
       </HStack>
     </VStack>

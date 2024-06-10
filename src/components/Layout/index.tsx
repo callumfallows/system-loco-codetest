@@ -18,21 +18,22 @@ type PageContentContainerProps = {
 
 const PageContentContainer = ({ children }: PageContentContainerProps) => {
   return (
-    <VStack width="100%" p={0} paddingX="4" alignItems="flex-start">
+    <VStack width="100%" p={0} alignItems="flex-start" overflowX="hidden">
       <HStack
+        paddingX="2"
         width="full"
-        height="100vh"
         justifyContent="flex-start"
         alignItems="flex-start"
-        overflow="hidden"
         spacing="0"
       >
         <SideNav />
         <VStack
           justifyContent="flex-start"
           padding="0"
+          marginRight="50px"
           alignItems="flex-start"
           width="full"
+          overflowX="scroll"
           height="100vh"
         >
           {children}

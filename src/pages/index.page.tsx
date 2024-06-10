@@ -2,12 +2,13 @@ import type { NextPage } from "next";
 import { Container, HStack, VStack } from "@chakra-ui/react";
 import PageContentContainer from "~/components/Layout";
 import { DeviceListTable } from "~/components/Tables";
+import { DeviceFilters } from "~/components/Devices";
 
 const Home: NextPage = () => {
   return (
     <PageContentContainer>
       <Container
-        width="100vw"
+        width="full"
         height="100vw"
         maxWidth="100vw"
         overflow="hidden"
@@ -18,11 +19,11 @@ const Home: NextPage = () => {
         </HStack>
         <VStack
           height="full"
-          width="full"
           overflow="hidden"
           overflowY="auto"
           alignItems="flex-start"
         >
+          <DeviceFilters />
           <DeviceListTable />
         </VStack>
       </Container>
