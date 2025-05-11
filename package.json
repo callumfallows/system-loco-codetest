@@ -20,7 +20,7 @@
     "cypress:run": "cypress run && cypress run --component"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.8.2",
+    "@chakra-ui/react": "2.9.0",
     "@emotion/react": "11.11.3",
     "@emotion/styled": "11.11.0",
     "axios": "^1.7.2",
